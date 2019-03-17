@@ -76,7 +76,9 @@ class HeaderKu extends Component{
                                         <NavLink>Hi, {this.props.bebas}</NavLink>
                                     </NavItem>
                                     <NavItem>
-                                        <Link to="/login"><NavLink className="btn btn-default border-primary" style={{fontSize:"14px"}}><i class="fas fa-cart-arrow-down"></i> Cart </NavLink></Link>
+                                        <Link to="/login"><NavLink className="btn btn-default border-primary" style={{fontSize:"14px"}}><i class="fas fa-cart-arrow-down"></i> Cart 
+                                                                            <span>{this.props.cart.length>0 ? this.props.cart.length:null} </span> </NavLink></Link>
+                                        
                                     </NavItem>
                                     <UncontrolledDropdown nav inNavbar>
                                         <DropdownToggle nav caret>
@@ -118,7 +120,8 @@ class HeaderKu extends Component{
 const mapStateToProps = (state) => {
     return {
         bebas : state.user.username,
-        role : state.user.role
+        role : state.user.role,
+        cart : state.cart.cart
     }
 }
 

@@ -2,6 +2,7 @@ import React from 'react'
 import Axios from 'axios';
 import { urlApi } from '../support/urlApi';
 import { connect } from 'react-redux';
+import { addToCart } from '../1.actions';
 
 class ProductDetail extends React.Component{
     state = {product : {}}
@@ -24,6 +25,16 @@ class ProductDetail extends React.Component{
         if(qty<1){
             this.refs.inputQty.value = 1
         }
+    }
+
+    addToCart = () => {
+        var qty = parseInt(this.refs.inputQty.value)
+        var deskripsi = this.refs.deskripsi.value
+        var newObj = {}
+
+        newObj={...this.state.product, id_product:this.state.product.id,id_user : this.props.id, qty:qty, deskripsi}
+        delete newObj.id
+        this.props.addToCart(newObj)
     }
 
     render(){
@@ -112,9 +123,11 @@ class ProductDetail extends React.Component{
 const mapStateToProps = (state) => {
     
     return{
-        username : state.user.username
+        username : state.user.username,
+        id : state.user.id,
+        cart : state.cart.cart
     }
 }
 
-export default connect(mapStateToProps)(ProductDetail);  
+export default connect(mapStateToProps,{addToCart})(ProductDetail);  
 // connect adl sebuah function yg return function

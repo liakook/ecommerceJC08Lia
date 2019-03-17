@@ -1,4 +1,4 @@
-const INITIAL_STATE = {id : "", username : "",error:"",loading:false, role : ""}
+const INITIAL_STATE = {id : "", username : "",error:"",loading:false, role : "", cart : []}
 
 export default (state=INITIAL_STATE,action) => {  // anonymous function
     // if(action.type === 'LOGIN_SUCCESS'){
@@ -23,7 +23,9 @@ export default (state=INITIAL_STATE,action) => {  // anonymous function
             return {...INITIAL_STATE, 
                 username : action.payload.username , 
                 role : action.payload.role, 
-                id : action.payload.id}
+                id : action.payload.id,
+                cart : action.payload.cart
+                }
         case 'LOADING' :
             return {...INITIAL_STATE, loading : true}
         case 'USER_NOT_FOUND' :

@@ -6,12 +6,14 @@ import Register from './components/Register'
 import { Route , withRouter , Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import cookie from 'universal-cookie'
-import { keepLogin } from './1.actions'
+import { keepLogin,keepCart } from './1.actions'
 import Product from './components/productList'
 import ManageProduct from './components/admin/manageProduct'
 import PageNotFound from './components/pageNotFound'
 import ProductDetail from './components/productDetail'
 import ScrollToTop from './components/scrollToTop'
+import Cookie from 'universal-cookie'
+import Cart from './components/cart'
 import './App.css';
 
 //withRouter fungsinya : untuk tersambung ke Reducer dengan connect, tp di dlm komponen ada routing.
@@ -38,6 +40,7 @@ class App extends Component {
           <Route path='/product' component={Product} exact/>
           <Route path='/manageproduct' component={ManageProduct} exact/>
           <Route path='/product-detail/:id' component={ProductDetail} exact/>
+          <Route path='/cart' component={Cart} exact/>
           <Route path='/*' component={PageNotFound} exact/>
           </Switch>
           </ScrollToTop>
