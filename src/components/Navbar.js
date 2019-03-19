@@ -87,7 +87,7 @@ class HeaderKu extends Component{
                                         <DropdownMenu right>
                                         {this.props.role === 'admin'
                                             ?
-                                            <Link to='/manage'>
+                                            <Link to='/manageproduct'>
                                             <DropdownItem>
                                                 Manage Product
                                             </DropdownItem>
@@ -95,8 +95,20 @@ class HeaderKu extends Component{
                                             :
                                             null
                                         }
+                                         <DropdownItem>
+                                             <Link to='/cekout'>
+                                            Cek Out
+                                            </Link>
+                                        </DropdownItem>
                                         <DropdownItem>
+                                            <Link to='/cekout'>
                                             Histori Transaksi
+                                            </Link>
+                                        </DropdownItem>
+                                        <DropdownItem>
+                                            <Link to='/cekout'>
+                                            Histori Detil
+                                            </Link>
                                         </DropdownItem>
                                         <DropdownItem>
                                             Edit Profile

@@ -1,4 +1,4 @@
-const INITIAL_STATE = {id : "", username : "",error:"",loading:false, role : "", cart : []}
+const INITIAL_STATE = {id : 0, username : "",error:"",loading:false, role : "",loading : false, cookie : false}
 
 export default (state=INITIAL_STATE,action) => {  // anonymous function
     // if(action.type === 'LOGIN_SUCCESS'){
@@ -24,18 +24,21 @@ export default (state=INITIAL_STATE,action) => {  // anonymous function
                 username : action.payload.username , 
                 role : action.payload.role, 
                 id : action.payload.id,
-                cart : action.payload.cart
+                cart : action.payload.cart,
+                cookie : true
                 }
         case 'LOADING' :
-            return {...INITIAL_STATE, loading : true}
+            return {...INITIAL_STATE, loading : true, cookie : true}
         case 'USER_NOT_FOUND' :
-            return {...INITIAL_STATE , error : 'Username atau Password Salah!'}
+            return {...INITIAL_STATE , error : action.payload[1], cookie : true}
         case 'SYSTEM_ERROR' :
-            return {...INITIAL_STATE , error : 'System Error'}
+            return {...INITIAL_STATE , error : 'System Error', cookie : true}
         case 'RESET_USER' :
-            return INITIAL_STATE
+            return {...INITIAL_STATE, cookie : true}
         case 'USERNAME_NOT_AVAILABLE' :
-            return {...INITIAL_STATE, error : 'Username Not Available'}
+            return {...INITIAL_STATE, error : 'Username Not Available', cookie : true}
+        case 'COOKIE_CHECKED' :
+            return {...state, cookie : true}
         default :
             return state
     }

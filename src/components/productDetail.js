@@ -5,10 +5,15 @@ import { connect } from 'react-redux';
 import { addToCart } from '../1.actions';
 
 class ProductDetail extends React.Component{
-    state = {product : {}}
+    state = {product : {}, cart : []}
     componentDidMount(){
         this.getDataApi()
     }
+
+    componentWillReceiveProps(newProps){
+        this.setState({cart:newProps.cart})
+    }
+
     getDataApi = () => {
         var idUrl = this.props.match.params.id
         Axios.get(urlApi+'/products/' + idUrl)
@@ -27,12 +32,10 @@ class ProductDetail extends React.Component{
         }
     }
 
-    addToCart = () => {
+    addBtnCart = () => {
         var qty = parseInt(this.refs.inputQty.value)
         var deskripsi = this.refs.deskripsi.value
-        var newObj = {}
-
-        newObj={...this.state.product, id_product:this.state.product.id,id_user : this.props.id, qty:qty, deskripsi}
+        var newObj = {...this.state.product, id_product:this.state.product.id,id_user : this.props.id, qty:qty, deskripsi}
         delete newObj.id
         this.props.addToCart(newObj)
     }
@@ -99,20 +102,20 @@ class ProductDetail extends React.Component{
                         {this.props.username === ""
                         ?
                             <div className='row mt-4'>
-                                <input disabled className='btn border-secondary col-md-2' value='Add To Wishlist' />
-                                <input disabled className='btn btn-primary col-md-3' value='Beli Sekarang' />
-                                <input disabled className='btn btn-success col-md-3' value='Masukan Ke Keranjang' />
+                                <input type="button" disabled className='btn border-secondary col-md-2' value='Add To Wishlist' />
+                                <input type="button" disabled className='btn btn-primary col-md-3' value='Beli Sekarang' />
+                                <input type="button" disabled className='btn btn-success col-md-3' value='Masukan Ke Keranjang' />
                             </div>
 
                         :
 
                             <div className='row mt-4'>
-                                <input className='btn border-secondary col-md-2' value='Add To Wishlist' />
-                                <input className='btn btn-primary col-md-3' value='Beli Sekarang' />
-                                <input className='btn btn-success col-md-3' value='Masukan Ke Keranjang' />
+                                <input type="button" className='btn border-secondary col-md-2' value='Add To Wishlist' />
+                                <input type="button" className='btn btn-primary col-md-3' value='Beli Sekarang' />
+                                <input type="button" className='btn btn-success col-md-3' value='Masukan Ke Keranjang' onClick = {this.addBtnCart} />
                             </div>
                         }
-
+                        {this.state.cart.length}
                     </div>
                 </div>
             </div>
@@ -131,3 +134,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps,{addToCart})(ProductDetail);  
 // connect adl sebuah function yg return function
+
+

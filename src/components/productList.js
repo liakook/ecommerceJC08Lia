@@ -8,6 +8,7 @@
         state = {listProduct : []}
     
         componentDidMount(){
+            alert(this.props.search)
             this.getDataProduct()
         }
         getDataProduct = () => {
@@ -17,6 +18,7 @@
         }
         renderProdukJsx = () => {
             var jsx = this.state.listProduct.map((val) => {
+                // if(val.nama.toLowerCase().startsWith(this.props.search.toLowerCase())){         // .startsWith menghasilkan true/false (boolean); .props adl child dari parent .setState di Home
                 return (
                     <div className="card col-md-3 mr-5 mt-3" style={{width: '18rem'}}>
                         <Link to={'/product-detail/' + val.id}><img className="card-img-top img" height='200px' src={val.img} alt="Card" /></Link>
@@ -42,7 +44,10 @@
                         </div>
                     </div>
                     )
-            })
+            }
+            // }
+            )
+        
     
             return jsx
         }
@@ -51,7 +56,7 @@
                 <div className='container'>
                     <div className='row justify-content-center'>
                     {this.renderProdukJsx()}
-    </div>
+                    </div>
                 </div>
             )
         }

@@ -11,8 +11,8 @@ export const onLogin = (paramUsername,paramPassword) => {  // paramUsername,para
     })
 
     // GET DATA DARI FAKE API , MASUK KE THEN
-    axios.get(urlApi + '/users',{
-        params:{username:paramUsername,                     // yg kirim itu dari database, yg kanan dari parameter di atas!, param di convert di url website jadi '?'
+    axios.get(urlApi + '/users',
+        {params:{username:paramUsername,                     // yg kirim itu dari database, yg kanan dari parameter di atas!, param di convert di url website jadi '?'
                 password:paramPassword}})   
     .then((res) => {
         console.log(res)
@@ -64,6 +64,12 @@ export const keepLogin = (cookie) => {
     }
 }
    
+export const cookieChecked = () => {
+    return  {
+        type : 'COOKIE_CHECKED'
+    }
+}
+
 export const resetUser = () => {
     return {
         type : 'RESET_USER'
@@ -137,7 +143,7 @@ export const loginWithGoogle = (email) => {
 }
 
 
-userRegister('Fikri','123','fikri@gmail.com','0812381234')
+// userRegister('Fikri','123','fikri@gmail.com','0812381234')
 
 // username di kiri dr API, paramUsername dari parameter di atasnya
     

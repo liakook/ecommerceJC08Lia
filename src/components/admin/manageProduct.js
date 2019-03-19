@@ -333,7 +333,7 @@
                   </TableBody>
               </Table>
           </Paper>
-          {/* {======= End of Edit Product Section ===========} */}
+          {/* {======= End of Add Product Section ===========} */}
      
         {/** ===== Edit Product Section =======*/}
         {
